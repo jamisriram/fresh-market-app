@@ -13,9 +13,7 @@ const port = process.env.PORT || 5000;
 
 // CORS configuration
 const corsOptions = {
-    origin: process.env.NODE_ENV === 'production'
-        ? ['https://fresh-market-app.vercel.app']
-        : 'http://localhost:3000',
+    origin: 'http://localhost:3000',
     credentials: true
 };
 
@@ -44,7 +42,6 @@ app.get('/api/users', auth, isAdmin, async (req, res) => {
     }
 });
 
-// Update user role (admin only)
 app.put('/api/users/:id/role', auth, isAdmin, async (req, res) => {
     const { id } = req.params;
     const { role } = req.body;
